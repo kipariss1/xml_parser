@@ -1,9 +1,9 @@
-from InputLineageReaderXML import InputLineageReaderXML
+from src.InputLineageReaderXML import InputLineageReaderXML
 from pathlib import Path
 
 
 def read_input(path):
-    input_xml = InputLineageReaderXML(path)
+    input_xml = InputLineageReaderXML(path, structure_file=Path('structure.json').resolve())
     just_folder = list(input_xml.folders[0].values())[0]
     pass
 
