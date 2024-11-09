@@ -1,43 +1,41 @@
-[
-    {
-      "REPOSITORY": [
-                    {
-                        "FOLDER": [
-                            {
-                                "SOURCE": [
-                                    "SOURCEFIELD"
-                                ]
-                            },
-                            {
-                                "TARGET": [
-                                    "TARGETFIELD"
-                                ]
-                            },
-                            {
-                                "MAPPING": [
-                                    {
-                                        "TRANSFORMATION": [
-                                            "TRANSFORMFIELD"
+{
+  "REPOSITORY": [
+                {
+                    "FOLDER": [
+                        {
+                            "SOURCE": [
+                                "SOURCEFIELD"
+                            ]
+                        },
+                        {
+                            "TARGET": [
+                                "TARGETFIELD"
+                            ]
+                        },
+                        {
+                            "MAPPING": [
+                                {
+                                    "TRANSFORMATION": [
+                                        "TRANSFORMFIELD"
+                                    ]
+                                },
+                                {
+                                    "INSTANCE": [
+                                            "ASSOCIATED_SOURCE_INSTANCE"
                                         ]
-                                    },
-                                    {
-                                        "INSTANCE": [
-                                                "ASSOCIATED_SOURCE_INSTANCE"
-                                            ]
-                                    },
-                                    "CONNECTOR",
-                                    "TARGETLOADORDER",
-                                    "ERPINFO"
-                                ]
-                            },
-                            {
-                                "WORKFLOW": [
-                                    "SESSION",
-                                    "TASKINSTANCE"
-                                ]
-                            }
-                        ]
-                    }
-                ]
-    }
-]
+                                },
+                                "CONNECTOR",
+                                "TARGETLOADORDER",
+                                "ERPINFO"
+                            ]
+                        },
+                        {
+                            "WORKFLOW": [
+                                "SESSION",
+                                "TASKINSTANCE"
+                            ]
+                        }
+                    ]
+                }
+            ]
+}

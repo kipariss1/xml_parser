@@ -13,8 +13,8 @@ class InputLineageReaderXML(InputLineageReader):
         with open(structure_file) as file:
             self._structure = json.load(file)
         self._factory = StructureElementsFactory
-        super().__init__(*args, **kwargs)
         self.__root = None
+        super().__init__(*args, **kwargs)
 
     def _read_input_file_recursively(self, lxml_element, structure) -> list:
         if isinstance(structure, str):
@@ -47,9 +47,7 @@ class InputLineageReaderXML(InputLineageReader):
     def _read_input(self, target_file_path: Path):
         tree = etree.parse(target_file_path)
         root = tree.getroot()
-        for _dict in self._structure:
-            res = self._read_input_file_recursively(root, _dict)
-        self.__root = res
+        self.__root = self._read_input_file_recursively(root, self._structure)
 
     @property
     def root(self):
