@@ -15,7 +15,7 @@ class InputLineageReaderXML(InputLineageReader):
         super().__init__(*args, **kwargs)
 
     def _read_folder(self, el: etree.Element):
-        curr_folder = Folder()
+        curr_folder = Folder(uuid=el.attrib['UUID'])
         for category in self.categories:
             curr_folder[category.lower() + 's'] = el.findall(category)
         return curr_folder

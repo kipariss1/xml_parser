@@ -5,6 +5,7 @@ from lxml import etree
 
 @dataclass
 class Folder:
+    uuid: str
     mappings: List[etree.Element] = field(default_factory=list)
     sources: List[etree.Element] = field(default_factory=list)
     targets: List[etree.Element] = field(default_factory=list)
