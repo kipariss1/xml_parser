@@ -2,8 +2,6 @@ from pathlib import Path
 from src.interfaces.InputLineageReader import InputLineageReader
 from src.StructureElementsFactory import StructureElementsFactory
 from lxml import etree
-from collections import defaultdict
-from typing import List
 import json
 
 
