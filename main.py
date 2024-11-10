@@ -8,13 +8,19 @@ from enum import Enum
 
 
 class InformaticaObjectHierarchy(Enum):
-    WORKFLOW = 0
-    SESSION = 1
-    MAPPING = 2
-    TRANSFORMATION = 3
+    REPOSITORY = 0
+    FOLDER = 1
+    WORKFLOW = 2
+    SESSION = 3
+    MAPPING = 4
+    TRANSFORMATION = 5
+
+def tree():
+    return defaultdict(tree)
 
 
 def find_databases(input_xml: InputLineageReaderXML, output_file_dir: str):
+    # TODO: redo without the lists
     res = defaultdict(list)
     folder = input_xml.root[0].FOLDERS[0]
     source_list = folder.SOURCES
@@ -32,17 +38,19 @@ def find_databases(input_xml: InputLineageReaderXML, output_file_dir: str):
         json.dump(res, file, indent=4)
 
 
-def _rec_find_informatica_objs(obj: Type[BaseStructureClass], json_dict):
-    pass
+def _rec_find_informatica_objs(obj: Type[BaseStructureClass], json_dict: dict, level: int):
+    curr_level = InformaticaObjectHierarchy(level).name
+    next_level = InformaticaObjectHierarchy(level + 1).name
+    if curr_level == 'SESSION':
+        pass
+    for el in obj:
+        _rec_find_informatica_objs(el[next_level + 'S'], json_dict[el.name], level + 1)
 
 
 def find_informatica_objs(input_xml: InputLineageReaderXML, output_file_dir: str):
     # TODO: do it recursively here
-    res = {}
-    folder = input_xml.root[0].FOLDERS[0]
-    for wf in folder.WORKFLOWS:
-        d_wf = {}
-        _rec_find_informatica_objs(wf, d_wf)
+    res = tree()
+    _rec_find_informatica_objs(input_xml.root, res, 0)
 
 
 def find_lineages(path):
