@@ -4,6 +4,7 @@ from pathlib import Path
 
 def read_input(path):
     input_xml = InputLineageReaderXML(path, structure_file=Path('structure.json').resolve())
+    # TODO: find all the databases in sources and targets
     pass
 
 
