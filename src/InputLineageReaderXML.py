@@ -41,7 +41,6 @@ class InputLineageReaderXML(InputLineageReader):
                 new_cls,
                 {key.lower(): val for key, val in e.attrib.items()}
             )
-            # TODO: add here to new_cls already existing attributes from xml
             ret_list.append(new_cls)
             for idx, attr in enumerate(attributes_list):
                 new_cls[attr + 'S'] = self._read_input_file_recursively(e, value[idx])
