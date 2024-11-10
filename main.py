@@ -2,6 +2,16 @@ from src.InputLineageReaderXML import InputLineageReaderXML
 from pathlib import Path
 from collections import defaultdict
 import json
+from typing import Type
+from src.StructureElementsFactory import BaseStructureClass
+from enum import Enum
+
+
+class InformaticaObjectHierarchy(Enum):
+    WORKFLOW = 0
+    SESSION = 1
+    MAPPING = 2
+    TRANSFORMATION = 3
 
 
 def find_databases(input_xml: InputLineageReaderXML, output_file_dir: str):
@@ -18,12 +28,21 @@ def find_databases(input_xml: InputLineageReaderXML, output_file_dir: str):
         elif hasattr(instance, 'TARGETFIELDS'):
             d_tab = {col.name: {'id': int(col.fieldnumber)} for col in instance.TARGETFIELDS}
         table[instance.name] = d_tab
-    with open(Path(output_file_dir).resolve(), 'x') as file:
+    with open(Path(output_file_dir).resolve(), 'w') as file:
         json.dump(res, file, indent=4)
 
 
-def find_informatica_objs(input_xml: InputLineageReaderXML, output_file_dir: str):
+def _rec_find_informatica_objs(obj: Type[BaseStructureClass], json_dict):
     pass
+
+
+def find_informatica_objs(input_xml: InputLineageReaderXML, output_file_dir: str):
+    # TODO: do it recursively here
+    res = {}
+    folder = input_xml.root[0].FOLDERS[0]
+    for wf in folder.WORKFLOWS:
+        d_wf = {}
+        _rec_find_informatica_objs(wf, d_wf)
 
 
 def find_lineages(path):
