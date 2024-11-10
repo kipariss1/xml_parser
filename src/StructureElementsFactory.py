@@ -25,8 +25,9 @@ class StructureElementsFactory:
         return new_class
 
     @classmethod
-    def derive_and_init(cls, class_name: str, attributes: dict, lxml_element, base_class=BaseStructureClass):
+    def derive_and_init(cls, class_name: str, attributes: dict, lxml_element, parent, base_class=BaseStructureClass):
         new_class = type(class_name, (base_class,), {key.lower(): val for key, val in attributes.items()})
         new_class()
         new_class.lxml_element = lxml_element
+        setattr(new_class, 'parent', parent)
         return new_class

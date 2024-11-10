@@ -14,10 +14,10 @@ class InputLineageReaderXML(InputLineageReader):
         self.__root = None
         super().__init__(*args, **kwargs)
 
-    def _read_input_file_recursively(self, lxml_element, structure) -> list:
+    def _read_input_file_recursively(self, lxml_element, structure, parent) -> list:
         if isinstance(structure, str):
             return [
-                self._factory.derive_and_init(structure[0] + structure[1:].lower() + 'Class', dict(el.attrib), el)
+                self._factory.derive_and_init(structure[0] + structure[1:].lower() + 'Class', dict(el.attrib), el, parent)
                 for el in lxml_element.findall(structure)
             ]
         key, value = next(iter(structure.items()))
@@ -37,19 +37,21 @@ class InputLineageReaderXML(InputLineageReader):
         for e in lxml_element.findall(key):
             new_cls = cls()
             new_cls.lxml_element = e
+            attrbs = {key.lower(): val for key, val in e.attrib.items()}
+            attrbs['parent'] = parent
             self._factory.add_attributes(
                 new_cls,
-                {key.lower(): val for key, val in e.attrib.items()}
+                attrbs
             )
             ret_list.append(new_cls)
             for idx, attr in enumerate(attributes_list):
-                new_cls[attr + 'S'] = self._read_input_file_recursively(e, value[idx])
+                new_cls[attr + 'S'] = self._read_input_file_recursively(e, value[idx], new_cls)
         return ret_list
 
     def _read_input(self, target_file_path: Path):
         tree = etree.parse(target_file_path)
         root = tree.getroot()
-        self.__root = self._read_input_file_recursively(root, self._structure)
+        self.__root = self._read_input_file_recursively(root, self._structure, None)
 
     @property
     def root(self):
