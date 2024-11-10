@@ -15,6 +15,7 @@ class InputLineageReaderXML(InputLineageReader):
         super().__init__(*args, **kwargs)
 
     def _read_input_file_recursively(self, lxml_element, structure, parent) -> list:
+        # TODO: refactor this big function
         if isinstance(structure, str):
             return [
                 self._factory.derive_and_init(structure[0] + structure[1:].lower() + 'Class', dict(el.attrib), el, parent)
@@ -37,11 +38,10 @@ class InputLineageReaderXML(InputLineageReader):
         for e in lxml_element.findall(key):
             new_cls = cls()
             new_cls.lxml_element = e
-            attrbs = {key.lower(): val for key, val in e.attrib.items()}
-            attrbs['parent'] = parent
+            new_cls.parent = parent
             self._factory.add_attributes(
                 new_cls,
-                attrbs
+                {key.lower(): val for key, val in e.attrib.items()}
             )
             ret_list.append(new_cls)
             for idx, attr in enumerate(attributes_list):

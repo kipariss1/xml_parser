@@ -4,6 +4,7 @@ from dataclasses import dataclass
 @dataclass
 class BaseStructureClass:
     lxml_element = None
+    parent = None
 
     def __getitem__(self, key):
         return getattr(self, key)
@@ -29,5 +30,5 @@ class StructureElementsFactory:
         new_class = type(class_name, (base_class,), {key.lower(): val for key, val in attributes.items()})
         new_class()
         new_class.lxml_element = lxml_element
-        setattr(new_class, 'parent', parent)
+        new_class.parent = parent
         return new_class
