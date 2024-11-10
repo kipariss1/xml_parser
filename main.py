@@ -14,7 +14,7 @@ def find_databases(input_xml: InputLineageReaderXML, output_file_dir: str):
         res[instance.dbdname].append(table)
         d_tab = {}
         if hasattr(instance, 'SOURCEFIELDS'):
-            d_tab = {col.name: {'id': int(col.fieldnumber)}for col in instance.SOURCEFIELDS}
+            d_tab = {col.name: {'id': int(col.fieldnumber)} for col in instance.SOURCEFIELDS}
         elif hasattr(instance, 'TARGETFIELDS'):
             d_tab = {col.name: {'id': int(col.fieldnumber)} for col in instance.TARGETFIELDS}
         table[instance.name] = d_tab
