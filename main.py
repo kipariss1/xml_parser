@@ -50,6 +50,7 @@ def _get_mapping_for_session(sess):
 
 def _rec_find_informatica_objs(obj: list, json_dict: dict, level: int):
     curr_level = InformaticaObjectHierarchy(level).name
+    # TODO: case statement here
     if curr_level == 'TRANSFORMATION':
         # TODO: find connectors for transformation and find id's from connectors
         dummy_val = {'col1': {'id': 3}, 'col2': {'id': 4}}
