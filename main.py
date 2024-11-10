@@ -22,11 +22,17 @@ def find_databases(input_xml: InputLineageReaderXML, output_file_dir: str):
         json.dump(res, file, indent=4)
 
 
+def find_informatica_objs(input_xml: InputLineageReaderXML, output_file_dir: str):
+    pass
+
+
 def find_lineages(path):
     xml = Path(path).resolve()
     structure_file = Path('structure.json').resolve()
     input_xml = InputLineageReaderXML(xml, structure_file=structure_file)
     find_databases(input_xml, 'outs\\dbs.json')
+    # TODO: Find all informatica objects and transformations
+    find_informatica_objs(input_xml, 'outs\\informatica_objs.json')
 
 
 if __name__ == '__main__':
