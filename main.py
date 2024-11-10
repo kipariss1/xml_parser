@@ -42,9 +42,9 @@ def _get_mapping_for_session(sess):
     while type(sess.parent).__name__ != 'RepositoryClass':
         sess = sess.parent
     folder = sess
-    for map in folder.MAPPINGS:
-        if map.name == mapping_name:
-            return map
+    for m in folder.MAPPINGS:
+        if m.name == mapping_name:
+            return m
     return None
 
 
