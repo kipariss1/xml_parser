@@ -34,18 +34,6 @@ def find_databases(input_xml: InputLineageReaderXML, output_file_dir: str):
         json.dump(res, file, indent=4)
 
 
-def _get_mapping_for_session(sess):
-    # TODO: replace it by the 'get_child_attr_by_matching_property'
-    mapping_name = sess.mappingname
-    while type(sess.parent).__name__ != 'RepositoryClass':
-        sess = sess.parent
-    folder = sess
-    for m in folder.MAPPINGS:
-        if m.name == mapping_name:
-            return m
-    return None
-
-
 def _rec_find_informatica_objs(obj: list, json_dict: dict, level: int):
     curr_level = InformaticaObjectHierarchy(level).name
     match curr_level:
@@ -54,8 +42,9 @@ def _rec_find_informatica_objs(obj: list, json_dict: dict, level: int):
                 json_dict[el.name] = {'id': el.id}
         case 'SESSION':
             for el in obj:
-                mapping = _get_mapping_for_session(el)
-                _rec_find_informatica_objs([mapping], json_dict[str(el)], level + 1)
+                folder = el.parent.parent
+                mappings = folder.get_child_attr_by_matching_property('name', to=el.mappingname, child='MAPPING')
+                _rec_find_informatica_objs(mappings, json_dict[str(el)], level + 1)
             return
         case _:
             for el in obj:
