@@ -12,6 +12,7 @@ class InformaticaObjectHierarchy(Enum):
     SESSION = 3
     MAPPING = 4
     TRANSFORMATION = 5
+    TRANSFORMFIELD = 6
 
 
 def tree():
@@ -46,20 +47,12 @@ def _get_mapping_for_session(sess):
     return None
 
 
-def _extract_transformations(transform):
-    self_mapping = transform.parent
-    conns_from = self_mapping.get_child_attr_by_matching_property('toinstance', to=transform.name, child='CONNECTOR')
-    conns_to = self_mapping.get_child_attr_by_matching_property('frominstance', to=transform.name, child='CONNECTOR')
-    return False
-
-
 def _rec_find_informatica_objs(obj: list, json_dict: dict, level: int):
     curr_level = InformaticaObjectHierarchy(level).name
     match curr_level:
-        case 'TRANSFORMATION':
-            # TODO: find connectors for transformation and find id's from connectors
-            for el in obj:
-                json_dict[el.name] = _extract_transformations(el)
+        case 'TRANSFORMFIELD':
+            for idx, el in enumerate(obj):
+                json_dict[el.name] = {'id': idx}
         case 'SESSION':
             for el in obj:
                 mapping = _get_mapping_for_session(el)
