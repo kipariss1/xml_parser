@@ -187,9 +187,6 @@
         },
         "ShipDate": {
             "id": 26
-        },
-        "TechnicalComment": {
-            "id": 27
         }
     },
     "3. DimGeography": {

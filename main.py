@@ -29,7 +29,8 @@ def find_databases(input_xml: InputLineageReaderXML, output_file_dir: str):
             d_tab = {col.name: {'id': col.id} for col in instance.SOURCEFIELDS}
         elif hasattr(instance, 'TARGETFIELDS'):
             d_tab = {col.name: {'id': col.id} for col in instance.TARGETFIELDS}
-        res[str(instance)] = d_tab
+        if not str(instance) in res.keys():
+            res[str(instance)] = d_tab
     with open(Path(output_file_dir).resolve(), 'w') as file:
         json.dump(res, file, indent=4)
 
