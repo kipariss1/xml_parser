@@ -25,18 +25,17 @@ def find_databases(input_xml: InputLineageReaderXML, output_file_dir: str):
     source_list = folder.SOURCES
     target_list = folder.TARGETS
     for instance in source_list + target_list:
-        table = res[instance.dbdname]
-        d_tab = {}
         if hasattr(instance, 'SOURCEFIELDS'):
-            d_tab = {col.name: {'id': int(col.fieldnumber)} for col in instance.SOURCEFIELDS}
+            d_tab = {col.name: {'id': col.id} for col in instance.SOURCEFIELDS}
         elif hasattr(instance, 'TARGETFIELDS'):
-            d_tab = {col.name: {'id': int(col.fieldnumber)} for col in instance.TARGETFIELDS}
-        table[instance.name] = d_tab
+            d_tab = {col.name: {'id': col.id} for col in instance.TARGETFIELDS}
+        res[str(instance)] = d_tab
     with open(Path(output_file_dir).resolve(), 'w') as file:
         json.dump(res, file, indent=4)
 
 
 def _get_mapping_for_session(sess):
+    # TODO: replace it by the 'get_child_attr_by_matching_property'
     mapping_name = sess.mappingname
     while type(sess.parent).__name__ != 'RepositoryClass':
         sess = sess.parent
@@ -51,17 +50,17 @@ def _rec_find_informatica_objs(obj: list, json_dict: dict, level: int):
     curr_level = InformaticaObjectHierarchy(level).name
     match curr_level:
         case 'TRANSFORMFIELD':
-            for idx, el in enumerate(obj):
-                json_dict[el.name] = {'id': idx}
+            for el in obj:
+                json_dict[el.name] = {'id': el.id}
         case 'SESSION':
             for el in obj:
                 mapping = _get_mapping_for_session(el)
-                _rec_find_informatica_objs([mapping], json_dict[el.name], level + 1)
+                _rec_find_informatica_objs([mapping], json_dict[str(el)], level + 1)
             return
         case _:
             for el in obj:
                 next_level = InformaticaObjectHierarchy(level + 1).name
-                _rec_find_informatica_objs(el[next_level + 'S'], json_dict[el.name], level + 1)
+                _rec_find_informatica_objs(el[next_level + 'S'], json_dict[str(el)], level + 1)
 
 
 def find_informatica_objs(input_xml: InputLineageReaderXML, output_file_dir: str):

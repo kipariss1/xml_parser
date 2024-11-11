@@ -1,617 +1,611 @@
 {
-    "Raw": {
-        "DimProduct": {
-            "ProductKey": {
-                "id": 1
-            },
-            "ProductAlternateKey": {
-                "id": 2
-            },
-            "ProductSubcategoryKey": {
-                "id": 3
-            },
-            "WeightUnitMeasureCode": {
-                "id": 4
-            },
-            "SizeUnitMeasureCode": {
-                "id": 5
-            },
-            "EnglishProductName": {
-                "id": 6
-            },
-            "SpanishProductName": {
-                "id": 7
-            },
-            "FrenchProductName": {
-                "id": 8
-            },
-            "StandardCost": {
-                "id": 9
-            },
-            "FinishedGoodsFlag": {
-                "id": 10
-            },
-            "Color": {
-                "id": 11
-            },
-            "SafetyStockLevel": {
-                "id": 12
-            },
-            "ReorderPoint": {
-                "id": 13
-            },
-            "ListPrice": {
-                "id": 14
-            },
-            "Size": {
-                "id": 15
-            },
-            "SizeRange": {
-                "id": 16
-            },
-            "Weight": {
-                "id": 17
-            },
-            "DaysToManufacture": {
-                "id": 18
-            },
-            "ProductLine": {
-                "id": 19
-            },
-            "DealerPrice": {
-                "id": 20
-            },
-            "Class": {
-                "id": 21
-            },
-            "Style": {
-                "id": 22
-            },
-            "ModelName": {
-                "id": 23
-            },
-            "LargePhoto": {
-                "id": 24
-            },
-            "EnglishDescription": {
-                "id": 25
-            },
-            "FrenchDescription": {
-                "id": 26
-            },
-            "ChineseDescription": {
-                "id": 27
-            },
-            "ArabicDescription": {
-                "id": 28
-            },
-            "HebrewDescription": {
-                "id": 29
-            },
-            "ThaiDescription": {
-                "id": 30
-            },
-            "GermanDescription": {
-                "id": 31
-            },
-            "JapaneseDescription": {
-                "id": 32
-            },
-            "TurkishDescription": {
-                "id": 33
-            },
-            "StartDate": {
-                "id": 34
-            },
-            "EndDate": {
-                "id": 35
-            },
-            "Status": {
-                "id": 36
-            }
+    "1. DimProduct": {
+        "ProductKey": {
+            "id": 1
         },
-        "FactInternetSales": {
-            "ProductKey": {
-                "id": 1
-            },
-            "OrderDateKey": {
-                "id": 2
-            },
-            "DueDateKey": {
-                "id": 3
-            },
-            "ShipDateKey": {
-                "id": 4
-            },
-            "CustomerKey": {
-                "id": 5
-            },
-            "PromotionKey": {
-                "id": 6
-            },
-            "CurrencyKey": {
-                "id": 7
-            },
-            "SalesTerritoryKey": {
-                "id": 8
-            },
-            "SalesOrderNumber": {
-                "id": 9
-            },
-            "SalesOrderLineNumber": {
-                "id": 10
-            },
-            "RevisionNumber": {
-                "id": 11
-            },
-            "OrderQuantity": {
-                "id": 12
-            },
-            "UnitPrice": {
-                "id": 13
-            },
-            "ExtendedAmount": {
-                "id": 14
-            },
-            "UnitPriceDiscountPct": {
-                "id": 15
-            },
-            "DiscountAmount": {
-                "id": 16
-            },
-            "ProductStandardCost": {
-                "id": 17
-            },
-            "TotalProductCost": {
-                "id": 18
-            },
-            "SalesAmount": {
-                "id": 19
-            },
-            "TaxAmt": {
-                "id": 20
-            },
-            "Freight": {
-                "id": 21
-            },
-            "CarrierTrackingNumber": {
-                "id": 22
-            },
-            "CustomerPONumber": {
-                "id": 23
-            },
-            "OrderDate": {
-                "id": 24
-            },
-            "DueDate": {
-                "id": 25
-            },
-            "ShipDate": {
-                "id": 26
-            },
-            "TechnicalComment": {
-                "id": 27
-            }
+        "ProductAlternateKey": {
+            "id": 2
         },
-        "DimGeography": {
-            "GeographyKey": {
-                "id": 1
-            },
-            "City": {
-                "id": 2
-            },
-            "StateProvinceCode": {
-                "id": 3
-            },
-            "StateProvinceName": {
-                "id": 4
-            },
-            "CountryRegionCode": {
-                "id": 5
-            },
-            "EnglishCountryRegionName": {
-                "id": 6
-            },
-            "SpanishCountryRegionName": {
-                "id": 7
-            },
-            "FrenchCountryRegionName": {
-                "id": 8
-            },
-            "PostalCode": {
-                "id": 9
-            },
-            "SalesTerritoryKey": {
-                "id": 10
-            },
-            "IpAddressLocator": {
-                "id": 11
-            }
+        "ProductSubcategoryKey": {
+            "id": 3
         },
-        "DimCustomer": {
-            "CustomerKey": {
-                "id": 1
-            },
-            "GeographyKey": {
-                "id": 2
-            },
-            "CustomerAlternateKey": {
-                "id": 3
-            },
-            "Title": {
-                "id": 4
-            },
-            "FirstName": {
-                "id": 5
-            },
-            "MiddleName": {
-                "id": 6
-            },
-            "LastName": {
-                "id": 7
-            },
-            "NameStyle": {
-                "id": 8
-            },
-            "BirthDate": {
-                "id": 9
-            },
-            "MaritalStatus": {
-                "id": 10
-            },
-            "Suffix": {
-                "id": 11
-            },
-            "Gender": {
-                "id": 12
-            },
-            "EmailAddress": {
-                "id": 13
-            },
-            "YearlyIncome": {
-                "id": 14
-            },
-            "TotalChildren": {
-                "id": 15
-            },
-            "NumberChildrenAtHome": {
-                "id": 16
-            },
-            "EnglishEducation": {
-                "id": 17
-            },
-            "SpanishEducation": {
-                "id": 18
-            },
-            "FrenchEducation": {
-                "id": 19
-            },
-            "EnglishOccupation": {
-                "id": 20
-            },
-            "SpanishOccupation": {
-                "id": 21
-            },
-            "FrenchOccupation": {
-                "id": 22
-            },
-            "HouseOwnerFlag": {
-                "id": 23
-            },
-            "NumberCarsOwned": {
-                "id": 24
-            },
-            "AddressLine1": {
-                "id": 25
-            },
-            "AddressLine2": {
-                "id": 26
-            },
-            "Phone": {
-                "id": 27
-            },
-            "DateFirstPurchase": {
-                "id": 28
-            },
-            "CommuteDistance": {
-                "id": 29
-            }
+        "WeightUnitMeasureCode": {
+            "id": 4
+        },
+        "SizeUnitMeasureCode": {
+            "id": 5
+        },
+        "EnglishProductName": {
+            "id": 6
+        },
+        "SpanishProductName": {
+            "id": 7
+        },
+        "FrenchProductName": {
+            "id": 8
+        },
+        "StandardCost": {
+            "id": 9
+        },
+        "FinishedGoodsFlag": {
+            "id": 10
+        },
+        "Color": {
+            "id": 11
+        },
+        "SafetyStockLevel": {
+            "id": 12
+        },
+        "ReorderPoint": {
+            "id": 13
+        },
+        "ListPrice": {
+            "id": 14
+        },
+        "Size": {
+            "id": 15
+        },
+        "SizeRange": {
+            "id": 16
+        },
+        "Weight": {
+            "id": 17
+        },
+        "DaysToManufacture": {
+            "id": 18
+        },
+        "ProductLine": {
+            "id": 19
+        },
+        "DealerPrice": {
+            "id": 20
+        },
+        "Class": {
+            "id": 21
+        },
+        "Style": {
+            "id": 22
+        },
+        "ModelName": {
+            "id": 23
+        },
+        "LargePhoto": {
+            "id": 24
+        },
+        "EnglishDescription": {
+            "id": 25
+        },
+        "FrenchDescription": {
+            "id": 26
+        },
+        "ChineseDescription": {
+            "id": 27
+        },
+        "ArabicDescription": {
+            "id": 28
+        },
+        "HebrewDescription": {
+            "id": 29
+        },
+        "ThaiDescription": {
+            "id": 30
+        },
+        "GermanDescription": {
+            "id": 31
+        },
+        "JapaneseDescription": {
+            "id": 32
+        },
+        "TurkishDescription": {
+            "id": 33
+        },
+        "StartDate": {
+            "id": 34
+        },
+        "EndDate": {
+            "id": 35
+        },
+        "Status": {
+            "id": 36
         }
     },
-    "Oracle": {
-        "ORDER_ITEMS": {
-            "ORDER_ID": {
-                "id": 1
-            },
-            "LINE_ITEM_ID": {
-                "id": 2
-            },
-            "PRODUCT_ID": {
-                "id": 3
-            },
-            "UNIT_PRICE": {
-                "id": 4
-            },
-            "QUANTITY": {
-                "id": 5
-            }
+    "2. FactInternetSales": {
+        "ProductKey": {
+            "id": 1
+        },
+        "OrderDateKey": {
+            "id": 2
+        },
+        "DueDateKey": {
+            "id": 3
+        },
+        "ShipDateKey": {
+            "id": 4
+        },
+        "CustomerKey": {
+            "id": 5
+        },
+        "PromotionKey": {
+            "id": 6
+        },
+        "CurrencyKey": {
+            "id": 7
+        },
+        "SalesTerritoryKey": {
+            "id": 8
+        },
+        "SalesOrderNumber": {
+            "id": 9
+        },
+        "SalesOrderLineNumber": {
+            "id": 10
+        },
+        "RevisionNumber": {
+            "id": 11
+        },
+        "OrderQuantity": {
+            "id": 12
+        },
+        "UnitPrice": {
+            "id": 13
+        },
+        "ExtendedAmount": {
+            "id": 14
+        },
+        "UnitPriceDiscountPct": {
+            "id": 15
+        },
+        "DiscountAmount": {
+            "id": 16
+        },
+        "ProductStandardCost": {
+            "id": 17
+        },
+        "TotalProductCost": {
+            "id": 18
+        },
+        "SalesAmount": {
+            "id": 19
+        },
+        "TaxAmt": {
+            "id": 20
+        },
+        "Freight": {
+            "id": 21
+        },
+        "CarrierTrackingNumber": {
+            "id": 22
+        },
+        "CustomerPONumber": {
+            "id": 23
+        },
+        "OrderDate": {
+            "id": 24
+        },
+        "DueDate": {
+            "id": 25
+        },
+        "ShipDate": {
+            "id": 26
+        },
+        "TechnicalComment": {
+            "id": 27
         }
     },
-    "Refined": {
-        "CustomerProductSales": {
-            "CarrierTrackingNumber": {
-                "id": 1
-            },
-            "CurrencyKey": {
-                "id": 2
-            },
-            "CustomerPONumber": {
-                "id": 3
-            },
-            "DiscountAmount": {
-                "id": 4
-            },
-            "DueDate": {
-                "id": 5
-            },
-            "DueDateKey": {
-                "id": 6
-            },
-            "ExtendedAmount": {
-                "id": 7
-            },
-            "Freight": {
-                "id": 8
-            },
-            "OrderDate": {
-                "id": 9
-            },
-            "OrderDateKey": {
-                "id": 10
-            },
-            "OrderQuantity": {
-                "id": 11
-            },
-            "ProductStandardCost": {
-                "id": 12
-            },
-            "PromotionKey": {
-                "id": 13
-            },
-            "RevisionNumber": {
-                "id": 14
-            },
-            "SalesAmount": {
-                "id": 15
-            },
-            "SalesOrderLineNumber": {
-                "id": 16
-            },
-            "SalesOrderNumber": {
-                "id": 17
-            },
-            "ShipDate": {
-                "id": 18
-            },
-            "ShipDateKey": {
-                "id": 19
-            },
-            "TaxAmt": {
-                "id": 20
-            },
-            "TotalProductCost": {
-                "id": 21
-            },
-            "UnitPrice": {
-                "id": 22
-            },
-            "UnitPriceDiscountPct": {
-                "id": 23
-            },
-            "ProductKey": {
-                "id": 24
-            },
-            "ProductAlternateKey": {
-                "id": 25
-            },
-            "ProductSubcategoryKey": {
-                "id": 26
-            },
-            "WeightUnitMeasureCode": {
-                "id": 27
-            },
-            "SizeUnitMeasureCode": {
-                "id": 28
-            },
-            "EnglishProductName": {
-                "id": 29
-            },
-            "SpanishProductName": {
-                "id": 30
-            },
-            "FrenchProductName": {
-                "id": 31
-            },
-            "StandardCost": {
-                "id": 32
-            },
-            "FinishedGoodsFlag": {
-                "id": 33
-            },
-            "Color": {
-                "id": 34
-            },
-            "SafetyStockLevel": {
-                "id": 35
-            },
-            "ReorderPoint": {
-                "id": 36
-            },
-            "ListPrice": {
-                "id": 37
-            },
-            "Size": {
-                "id": 38
-            },
-            "SizeRange": {
-                "id": 39
-            },
-            "Weight": {
-                "id": 40
-            },
-            "DaysToManufacture": {
-                "id": 41
-            },
-            "ProductLine": {
-                "id": 42
-            },
-            "DealerPrice": {
-                "id": 43
-            },
-            "Class": {
-                "id": 44
-            },
-            "Style": {
-                "id": 45
-            },
-            "ModelName": {
-                "id": 46
-            },
-            "LargePhoto": {
-                "id": 47
-            },
-            "EnglishDescription": {
-                "id": 48
-            },
-            "FrenchDescription": {
-                "id": 49
-            },
-            "ChineseDescription": {
-                "id": 50
-            },
-            "ArabicDescription": {
-                "id": 51
-            },
-            "HebrewDescription": {
-                "id": 52
-            },
-            "ThaiDescription": {
-                "id": 53
-            },
-            "GermanDescription": {
-                "id": 54
-            },
-            "JapaneseDescription": {
-                "id": 55
-            },
-            "TurkishDescription": {
-                "id": 56
-            },
-            "StartDate": {
-                "id": 57
-            },
-            "EndDate": {
-                "id": 58
-            },
-            "Status": {
-                "id": 59
-            },
-            "FullAddress": {
-                "id": 60
-            },
-            "FullName": {
-                "id": 61
-            },
-            "CustomerKey": {
-                "id": 62
-            },
-            "GeographyKey": {
-                "id": 63
-            },
-            "CustomerAlternateKey": {
-                "id": 64
-            },
-            "NameStyle": {
-                "id": 65
-            },
-            "BirthDate": {
-                "id": 66
-            },
-            "MaritalStatus": {
-                "id": 67
-            },
-            "Suffix": {
-                "id": 68
-            },
-            "Gender": {
-                "id": 69
-            },
-            "EmailAddress": {
-                "id": 70
-            },
-            "YearlyIncome": {
-                "id": 71
-            },
-            "TotalChildren": {
-                "id": 72
-            },
-            "NumberChildrenAtHome": {
-                "id": 73
-            },
-            "EnglishEducation": {
-                "id": 74
-            },
-            "SpanishEducation": {
-                "id": 75
-            },
-            "FrenchEducation": {
-                "id": 76
-            },
-            "EnglishOccupation": {
-                "id": 77
-            },
-            "SpanishOccupation": {
-                "id": 78
-            },
-            "FrenchOccupation": {
-                "id": 79
-            },
-            "HouseOwnerFlag": {
-                "id": 80
-            },
-            "NumberCarsOwned": {
-                "id": 81
-            },
-            "AddressLine2": {
-                "id": 82
-            },
-            "Phone": {
-                "id": 83
-            },
-            "DateFirstPurchase": {
-                "id": 84
-            },
-            "CommuteDistance": {
-                "id": 85
-            },
-            "StateProvinceCode": {
-                "id": 86
-            },
-            "CountryRegionCode": {
-                "id": 87
-            },
-            "SpanishCountryRegionName": {
-                "id": 88
-            },
-            "FrenchCountryRegionName": {
-                "id": 89
-            },
-            "SalesTerritoryKey": {
-                "id": 90
-            },
-            "IpAddressLocator": {
-                "id": 91
-            }
+    "3. DimGeography": {
+        "GeographyKey": {
+            "id": 1
+        },
+        "City": {
+            "id": 2
+        },
+        "StateProvinceCode": {
+            "id": 3
+        },
+        "StateProvinceName": {
+            "id": 4
+        },
+        "CountryRegionCode": {
+            "id": 5
+        },
+        "EnglishCountryRegionName": {
+            "id": 6
+        },
+        "SpanishCountryRegionName": {
+            "id": 7
+        },
+        "FrenchCountryRegionName": {
+            "id": 8
+        },
+        "PostalCode": {
+            "id": 9
+        },
+        "SalesTerritoryKey": {
+            "id": 10
+        },
+        "IpAddressLocator": {
+            "id": 11
+        }
+    },
+    "4. DimCustomer": {
+        "CustomerKey": {
+            "id": 1
+        },
+        "GeographyKey": {
+            "id": 2
+        },
+        "CustomerAlternateKey": {
+            "id": 3
+        },
+        "Title": {
+            "id": 4
+        },
+        "FirstName": {
+            "id": 5
+        },
+        "MiddleName": {
+            "id": 6
+        },
+        "LastName": {
+            "id": 7
+        },
+        "NameStyle": {
+            "id": 8
+        },
+        "BirthDate": {
+            "id": 9
+        },
+        "MaritalStatus": {
+            "id": 10
+        },
+        "Suffix": {
+            "id": 11
+        },
+        "Gender": {
+            "id": 12
+        },
+        "EmailAddress": {
+            "id": 13
+        },
+        "YearlyIncome": {
+            "id": 14
+        },
+        "TotalChildren": {
+            "id": 15
+        },
+        "NumberChildrenAtHome": {
+            "id": 16
+        },
+        "EnglishEducation": {
+            "id": 17
+        },
+        "SpanishEducation": {
+            "id": 18
+        },
+        "FrenchEducation": {
+            "id": 19
+        },
+        "EnglishOccupation": {
+            "id": 20
+        },
+        "SpanishOccupation": {
+            "id": 21
+        },
+        "FrenchOccupation": {
+            "id": 22
+        },
+        "HouseOwnerFlag": {
+            "id": 23
+        },
+        "NumberCarsOwned": {
+            "id": 24
+        },
+        "AddressLine1": {
+            "id": 25
+        },
+        "AddressLine2": {
+            "id": 26
+        },
+        "Phone": {
+            "id": 27
+        },
+        "DateFirstPurchase": {
+            "id": 28
+        },
+        "CommuteDistance": {
+            "id": 29
+        }
+    },
+    "5. ORDER_ITEMS": {
+        "ORDER_ID": {
+            "id": 1
+        },
+        "LINE_ITEM_ID": {
+            "id": 2
+        },
+        "PRODUCT_ID": {
+            "id": 3
+        },
+        "UNIT_PRICE": {
+            "id": 4
+        },
+        "QUANTITY": {
+            "id": 5
+        }
+    },
+    "1. CustomerProductSales": {
+        "CarrierTrackingNumber": {
+            "id": 1
+        },
+        "CurrencyKey": {
+            "id": 2
+        },
+        "CustomerPONumber": {
+            "id": 3
+        },
+        "DiscountAmount": {
+            "id": 4
+        },
+        "DueDate": {
+            "id": 5
+        },
+        "DueDateKey": {
+            "id": 6
+        },
+        "ExtendedAmount": {
+            "id": 7
+        },
+        "Freight": {
+            "id": 8
+        },
+        "OrderDate": {
+            "id": 9
+        },
+        "OrderDateKey": {
+            "id": 10
+        },
+        "OrderQuantity": {
+            "id": 11
+        },
+        "ProductStandardCost": {
+            "id": 12
+        },
+        "PromotionKey": {
+            "id": 13
+        },
+        "RevisionNumber": {
+            "id": 14
+        },
+        "SalesAmount": {
+            "id": 15
+        },
+        "SalesOrderLineNumber": {
+            "id": 16
+        },
+        "SalesOrderNumber": {
+            "id": 17
+        },
+        "ShipDate": {
+            "id": 18
+        },
+        "ShipDateKey": {
+            "id": 19
+        },
+        "TaxAmt": {
+            "id": 20
+        },
+        "TotalProductCost": {
+            "id": 21
+        },
+        "UnitPrice": {
+            "id": 22
+        },
+        "UnitPriceDiscountPct": {
+            "id": 23
+        },
+        "ProductKey": {
+            "id": 24
+        },
+        "ProductAlternateKey": {
+            "id": 25
+        },
+        "ProductSubcategoryKey": {
+            "id": 26
+        },
+        "WeightUnitMeasureCode": {
+            "id": 27
+        },
+        "SizeUnitMeasureCode": {
+            "id": 28
+        },
+        "EnglishProductName": {
+            "id": 29
+        },
+        "SpanishProductName": {
+            "id": 30
+        },
+        "FrenchProductName": {
+            "id": 31
+        },
+        "StandardCost": {
+            "id": 32
+        },
+        "FinishedGoodsFlag": {
+            "id": 33
+        },
+        "Color": {
+            "id": 34
+        },
+        "SafetyStockLevel": {
+            "id": 35
+        },
+        "ReorderPoint": {
+            "id": 36
+        },
+        "ListPrice": {
+            "id": 37
+        },
+        "Size": {
+            "id": 38
+        },
+        "SizeRange": {
+            "id": 39
+        },
+        "Weight": {
+            "id": 40
+        },
+        "DaysToManufacture": {
+            "id": 41
+        },
+        "ProductLine": {
+            "id": 42
+        },
+        "DealerPrice": {
+            "id": 43
+        },
+        "Class": {
+            "id": 44
+        },
+        "Style": {
+            "id": 45
+        },
+        "ModelName": {
+            "id": 46
+        },
+        "LargePhoto": {
+            "id": 47
+        },
+        "EnglishDescription": {
+            "id": 48
+        },
+        "FrenchDescription": {
+            "id": 49
+        },
+        "ChineseDescription": {
+            "id": 50
+        },
+        "ArabicDescription": {
+            "id": 51
+        },
+        "HebrewDescription": {
+            "id": 52
+        },
+        "ThaiDescription": {
+            "id": 53
+        },
+        "GermanDescription": {
+            "id": 54
+        },
+        "JapaneseDescription": {
+            "id": 55
+        },
+        "TurkishDescription": {
+            "id": 56
+        },
+        "StartDate": {
+            "id": 57
+        },
+        "EndDate": {
+            "id": 58
+        },
+        "Status": {
+            "id": 59
+        },
+        "FullAddress": {
+            "id": 60
+        },
+        "FullName": {
+            "id": 61
+        },
+        "CustomerKey": {
+            "id": 62
+        },
+        "GeographyKey": {
+            "id": 63
+        },
+        "CustomerAlternateKey": {
+            "id": 64
+        },
+        "NameStyle": {
+            "id": 65
+        },
+        "BirthDate": {
+            "id": 66
+        },
+        "MaritalStatus": {
+            "id": 67
+        },
+        "Suffix": {
+            "id": 68
+        },
+        "Gender": {
+            "id": 69
+        },
+        "EmailAddress": {
+            "id": 70
+        },
+        "YearlyIncome": {
+            "id": 71
+        },
+        "TotalChildren": {
+            "id": 72
+        },
+        "NumberChildrenAtHome": {
+            "id": 73
+        },
+        "EnglishEducation": {
+            "id": 74
+        },
+        "SpanishEducation": {
+            "id": 75
+        },
+        "FrenchEducation": {
+            "id": 76
+        },
+        "EnglishOccupation": {
+            "id": 77
+        },
+        "SpanishOccupation": {
+            "id": 78
+        },
+        "FrenchOccupation": {
+            "id": 79
+        },
+        "HouseOwnerFlag": {
+            "id": 80
+        },
+        "NumberCarsOwned": {
+            "id": 81
+        },
+        "AddressLine2": {
+            "id": 82
+        },
+        "Phone": {
+            "id": 83
+        },
+        "DateFirstPurchase": {
+            "id": 84
+        },
+        "CommuteDistance": {
+            "id": 85
+        },
+        "StateProvinceCode": {
+            "id": 86
+        },
+        "CountryRegionCode": {
+            "id": 87
+        },
+        "SpanishCountryRegionName": {
+            "id": 88
+        },
+        "FrenchCountryRegionName": {
+            "id": 89
+        },
+        "SalesTerritoryKey": {
+            "id": 90
+        },
+        "IpAddressLocator": {
+            "id": 91
         }
     }
 }

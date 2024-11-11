@@ -14,6 +14,9 @@ class BaseStructureClass:
     def __setitem__(self, key, value):
         setattr(self, key, value)
 
+    def __str__(self):
+        return f"{self.id}. {self.name}"
+
     def get_child_attr_by_matching_property(
             self,
             wanted_property: str,
