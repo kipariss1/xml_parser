@@ -60,6 +60,7 @@ def find_informatica_objs(input_xml: InputLineageReaderXML, output_file_dir: str
 
 
 def find_lineages_list(input_xml: InputLineageReaderXML, output_file_dir: str):
+    # TODO: find lineages
     pass
 
 
