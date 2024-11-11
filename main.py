@@ -61,8 +61,7 @@ def find_informatica_objs(input_xml: InputLineageReaderXML, output_file_dir: str
 
 def find_lineages(path):
     xml = Path(path).resolve()
-    structure_file = Path('structure.json').resolve()
-    input_xml = InputLineageReaderXML(xml, structure_file=structure_file)
+    input_xml = InputLineageReaderXML(xml)
     find_databases(input_xml, 'outs\\dbs.json')
     find_informatica_objs(input_xml, 'outs\\informatica_objs.json')
 

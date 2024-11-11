@@ -7,9 +7,7 @@ import json
 
 class InputLineageReaderXML(InputLineageReader):
 
-    def __init__(self, *args, structure_file, **kwargs):
-        with open(structure_file) as file:
-            self._structure = json.load(file)
+    def __init__(self, *args, **kwargs):
         self._factory = StructureElementsFactory
         self.__root = None
         super().__init__(*args, **kwargs)
