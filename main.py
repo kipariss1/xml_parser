@@ -45,7 +45,6 @@ def _rec_find_informatica_objs(obj: list, json_dict: dict, level: int):
                 folder = el.parent.parent
                 mappings = folder.get_child_attr_by_matching_property('name', to=el.mappingname, child='MAPPING')
                 _rec_find_informatica_objs(mappings, json_dict[str(el)], level + 1)
-            return
         case _:
             for el in obj:
                 next_level = InformaticaObjectHierarchy(level + 1).name
