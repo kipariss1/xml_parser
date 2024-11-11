@@ -35,10 +35,11 @@ class InputLineageReaderXML(InputLineageReader):
         for r in self.__root:
             for f in r.FOLDERS:
                 merge = f.SOURCES + f.TARGETS
+                merge_names = [e.name for e in merge]
                 for idx, el in enumerate(merge):
-                    sliced = [e.name for e in merge[:idx]]
-                    if el.name in sliced:
-                        el.id = sliced.index(el.name) + 1
+                    count = merge_names.count(el.name)
+                    if count > 1:
+                        el.id = merge_names.index(el.name) + 1
                     else:
                         el.id = idx + 1
 
