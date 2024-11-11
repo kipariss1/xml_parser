@@ -31,10 +31,17 @@ class InputLineageReaderXML(InputLineageReader):
                 new_cls[a + 'S'] = self._read_input_file_recursively(ch.findall(a), new_cls)
         return ret_list
 
+    def _allign_sources_and_target_indxs(self):
+        for r in self.__root:
+            for f in r.FOLDERS:
+                for el in f.SOURCES + f.TARGETS:
+                    pass
+
     def _read_input(self, target_file_path: Path):
         tree = etree.parse(target_file_path)
         root = tree.getroot()
         self.__root = self._read_input_file_recursively(root, None)
+        self._allign_sources_and_target_indxs()
 
     @property
     def root(self):
