@@ -19,7 +19,6 @@ def tree():
 
 
 def find_databases(input_xml: InputLineageReaderXML, output_file_dir: str):
-    # TODO: redo without the lists
     res = tree()
     folder = input_xml.root[0].FOLDERS[0]
     source_list = folder.SOURCES
