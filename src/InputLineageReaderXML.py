@@ -34,8 +34,13 @@ class InputLineageReaderXML(InputLineageReader):
     def _allign_sources_and_target_indxs(self):
         for r in self.__root:
             for f in r.FOLDERS:
-                for el in f.SOURCES + f.TARGETS:
-                    pass
+                merge = f.SOURCES + f.TARGETS
+                for idx, el in enumerate(merge):
+                    sliced = [e.name for e in merge[:idx]]
+                    if el.name in sliced:
+                        el.id = sliced.index(el.name) + 1
+                    else:
+                        el.id = idx + 1
 
     def _read_input(self, target_file_path: Path):
         tree = etree.parse(target_file_path)
