@@ -18,7 +18,7 @@ class StructureElementsFactory:
     @classmethod
     def add_attributes(cls, upd_cls, attr: dict):
         for key, val in attr.items():
-            setattr(upd_cls, key, val)
+            upd_cls[key] = val
 
     @classmethod
     def derive_new_class(cls, class_name: str, attributes: dict, base_class=BaseStructureClass):

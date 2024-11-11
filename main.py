@@ -46,14 +46,17 @@ def _get_mapping_for_session(sess):
     return None
 
 
+def _extract_transformations(obj):
+    return False
+
+
 def _rec_find_informatica_objs(obj: list, json_dict: dict, level: int):
     curr_level = InformaticaObjectHierarchy(level).name
     match curr_level:
         case 'TRANSFORMATION':
             # TODO: find connectors for transformation and find id's from connectors
-            dummy_val = {'col1': {'id': 3}, 'col2': {'id': 4}}
             for el in obj:
-                json_dict[el.name] = dummy_val
+                json_dict[el.name] = _extract_transformations(el)
         case 'SESSION':
             for el in obj:
                 mapping = _get_mapping_for_session(el)

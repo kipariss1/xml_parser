@@ -1,0 +1,21 @@
+{
+    "INF_REP_DEV": {
+        "CollibraSample": {
+            "collibra_sample": {
+                "oracle": {
+                    "m_orderentry_internetsales": {
+                        "SQ_ORDER_ITEMS": {}
+                    }
+                },
+                "sql": {
+                    "m_refine_customersalesreport": {
+                        "SQ_FactInternetSales": {},
+                        "SQ_DimCustomer": {},
+                        "join_Customer_InternetSales": {},
+                        "concat_fullname": {}
+                    }
+                }
+            }
+        }
+    }
+}
