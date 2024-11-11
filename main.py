@@ -46,7 +46,10 @@ def _get_mapping_for_session(sess):
     return None
 
 
-def _extract_transformations(obj):
+def _extract_transformations(transform):
+    self_mapping = transform.parent
+    conns_from = self_mapping.get_child_attr_by_matching_property('toinstance', to=transform.name, child='CONNECTOR')
+    conns_to = self_mapping.get_child_attr_by_matching_property('frominstance', to=transform.name, child='CONNECTOR')
     return False
 
 

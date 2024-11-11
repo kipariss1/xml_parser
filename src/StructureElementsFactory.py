@@ -12,6 +12,21 @@ class BaseStructureClass:
     def __setitem__(self, key, value):
         setattr(self, key, value)
 
+    def get_child_attr_by_matching_property(
+            self,
+            wanted_property: str,
+            to: str,
+            child: str
+    ):
+        attrs = self[child + 'S']
+        if not attrs:
+            return None
+        res = []
+        for el in attrs:
+            if getattr(el, wanted_property) == to:
+                res.append(el)
+        return res
+
 
 class StructureElementsFactory:
 
