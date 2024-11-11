@@ -55,11 +55,10 @@ class InputLineageReaderXML(InputLineageReader):
     def _read_input_file_recursively_without_structure(self, root, parent):
         ret_list = []
         for i, ch in enumerate(root, start=1):
-            key = ch.tag
-            value = list(set([el.tag for el in ch]))
-            class_name = key[0] + key[1:].lower() + 'Class'
-            attributes_list = value
-            attributes = {el + 'S': [] for el in value}
+            name = ch.tag
+            class_name = name[0] + name[1:].lower() + 'Class'
+            attributes_list = list(set([el.tag for el in ch]))
+            attributes = {a + 'S': [] for a in attributes_list}
             lxml_attributes = {key.lower(): val for key, val in ch.attrib.items()}
             attributes = {**attributes, **lxml_attributes}
             cls = self._factory.derive_new_class(
@@ -68,8 +67,8 @@ class InputLineageReaderXML(InputLineageReader):
             )
             new_cls = cls(ch, parent, i)
             ret_list.append(new_cls)
-            for idx, attr in enumerate(attributes_list):
-                new_cls[attr + 'S'] = self._read_input_file_recursively_without_structure(ch, new_cls)
+            for a in attributes_list:
+                new_cls[a + 'S'] = self._read_input_file_recursively_without_structure(ch.findall(a), new_cls)
         return ret_list
 
     def _read_input(self, target_file_path: Path):
