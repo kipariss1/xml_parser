@@ -20,13 +20,12 @@ def tree():
 
 def find_databases(input_xml: InputLineageReaderXML, output_file_dir: str):
     # TODO: redo without the lists
-    res = defaultdict(list)
+    res = tree()
     folder = input_xml.root[0].FOLDERS[0]
     source_list = folder.SOURCES
     target_list = folder.TARGETS
     for instance in source_list + target_list:
-        table = {}
-        res[instance.dbdname].append(table)
+        table = res[instance.dbdname]
         d_tab = {}
         if hasattr(instance, 'SOURCEFIELDS'):
             d_tab = {col.name: {'id': int(col.fieldnumber)} for col in instance.SOURCEFIELDS}
