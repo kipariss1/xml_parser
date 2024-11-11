@@ -59,11 +59,16 @@ def find_informatica_objs(input_xml: InputLineageReaderXML, output_file_dir: str
         json.dump(res, file, indent=4)
 
 
+def find_lineages_list(input_xml: InputLineageReaderXML, output_file_dir: str):
+    pass
+
+
 def find_lineages(path):
     xml = Path(path).resolve()
     input_xml = InputLineageReaderXML(xml)
     find_databases(input_xml, 'outs\\dbs.json')
     find_informatica_objs(input_xml, 'outs\\informatica_objs.json')
+    find_lineages_list(input_xml, 'outs\\lineages.json')
 
 
 if __name__ == '__main__':
