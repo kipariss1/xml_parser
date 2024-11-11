@@ -50,21 +50,21 @@ def _get_mapping_for_session(sess):
 
 def _rec_find_informatica_objs(obj: list, json_dict: dict, level: int):
     curr_level = InformaticaObjectHierarchy(level).name
-    # TODO: case statement here
-    if curr_level == 'TRANSFORMATION':
-        # TODO: find connectors for transformation and find id's from connectors
-        dummy_val = {'col1': {'id': 3}, 'col2': {'id': 4}}
-        for el in obj:
-            json_dict[el.name] = dummy_val
-        return
-    if curr_level == 'SESSION':
-        for el in obj:
-            mapping = _get_mapping_for_session(el)
-            _rec_find_informatica_objs([mapping], json_dict[el.name], level + 1)
-        return
-    for el in obj:
-        next_level = InformaticaObjectHierarchy(level + 1).name
-        _rec_find_informatica_objs(el[next_level + 'S'], json_dict[el.name], level + 1)
+    match curr_level:
+        case 'TRANSFORMATION':
+            # TODO: find connectors for transformation and find id's from connectors
+            dummy_val = {'col1': {'id': 3}, 'col2': {'id': 4}}
+            for el in obj:
+                json_dict[el.name] = dummy_val
+        case 'SESSION':
+            for el in obj:
+                mapping = _get_mapping_for_session(el)
+                _rec_find_informatica_objs([mapping], json_dict[el.name], level + 1)
+            return
+        case _:
+            for el in obj:
+                next_level = InformaticaObjectHierarchy(level + 1).name
+                _rec_find_informatica_objs(el[next_level + 'S'], json_dict[el.name], level + 1)
 
 
 def find_informatica_objs(input_xml: InputLineageReaderXML, output_file_dir: str):
