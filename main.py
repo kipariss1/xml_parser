@@ -39,15 +39,15 @@ def find_databases(input_xml: InputLineageReaderXML):
     attr_idx = instance_idx = 1
     for instance in source_list + target_list:
         attr = 'SOURCEFIELDS' if hasattr(instance, 'SOURCEFIELDS') else 'TARGETFIELDS'
-        instance.idx = instance_idx
         if instance.name in res:
             continue
+        instance.idx = instance_idx
         d_tab = res[instance.name]
         for attr in instance[attr]:
-            d_tab[attr.name] = {'id': attr_idx}
             if attr.name in d_tab:
                 continue
-            attr_idx.idx = attr_idx
+            d_tab[attr.name] = {'id': attr_idx}
+            attr.idx = attr_idx
             attr_idx += 1
         instance_idx += 1
     return res
