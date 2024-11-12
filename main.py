@@ -48,13 +48,14 @@ def find_databases(input_xml: InputLineageReaderXML):
     target_list = folder.TARGETS
     attr_idx = instance_idx = 1
     for instance in source_list + target_list:
+        d_db = res[instance.dbdname]
         attr = 'SOURCEFIELDS' if hasattr(instance, 'SOURCEFIELDS') else 'TARGETFIELDS'
-        if instance.name in res:
+        if instance.name in d_db:
             if hasattr(instance, 'TARGETFIELDS'):
                 _inport_indexes_from_source_obj(instance, [e for e in instance.parent.SOURCES if e.name == instance.name][0])
             continue
         instance.idx = instance_idx
-        d_tab = res[instance.name]
+        d_tab = d_db[instance.name]
         for attr in instance[attr]:
             if attr.name in d_tab:
                 continue
