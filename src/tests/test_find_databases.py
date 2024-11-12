@@ -67,7 +67,7 @@ class TestFindDatabases:
         """
 
     @pytest.fixture(autouse=True)
-    def parced_databases_xml(self, xml_base, databases_xml_fill):
+    def parsed_databases_xml(self, xml_base, databases_xml_fill):
         mock_xml = ET.fromstring(xml_base(databases_xml_fill))
         mock_file = MagicMock()
         mock_file.is_file.return_value = True
@@ -77,12 +77,12 @@ class TestFindDatabases:
             xml = InputLineageReaderXML(mock_file)
             return xml
 
-    def test__check_duplicates(self, parced_databases_xml):
-        sources = parced_databases_xml.root[0].FOLDERS[0].SOURCES
-        targets = parced_databases_xml.root[0].FOLDERS[0].TARGETS
+    def test__check_duplicates(self, parsed_databases_xml):
+        sources = parsed_databases_xml.root[0].FOLDERS[0].SOURCES
+        targets = parsed_databases_xml.root[0].FOLDERS[0].TARGETS
         assert len(sources) == 2
         assert len(targets) == 1
-        res = find_databases(parced_databases_xml)
+        res = find_databases(parsed_databases_xml)
         assert res == {
             'DimProduct':
                 {
