@@ -24,13 +24,20 @@ def find_databases(input_xml: InputLineageReaderXML, output_file_dir: str):
     folder = input_xml.root[0].FOLDERS[0]
     source_list = folder.SOURCES
     target_list = folder.TARGETS
+    attr_idx = instance_idx = 1
     for instance in source_list + target_list:
-        if hasattr(instance, 'SOURCEFIELDS'):
-            d_tab = {col.name: {'id': col.id} for col in instance.SOURCEFIELDS}
-        elif hasattr(instance, 'TARGETFIELDS'):
-            d_tab = {col.name: {'id': col.id} for col in instance.TARGETFIELDS}
-        if not str(instance) in res.keys():
-            res[str(instance)] = d_tab
+        attr = 'SOURCEFIELDS' if hasattr(instance, 'SOURCEFIELDS') else 'TARGETFIELDS'
+        instance.idx = instance_idx
+        for attr in instance[attr]:
+            pass
+            attr_idx += 1
+        instance_idx += 1
+        # if hasattr(instance, 'SOURCEFIELDS'):
+        #     d_tab = {col.name: {'id': col.id} for col in instance.SOURCEFIELDS}
+        # elif hasattr(instance, 'TARGETFIELDS'):
+        #     d_tab = {col.name: {'id': col.id} for col in instance.TARGETFIELDS}
+        # if not str(instance) in res.keys():
+        #     res[str(instance)] = d_tab
     with open(Path(output_file_dir).resolve(), 'w') as file:
         json.dump(res, file, indent=4)
 

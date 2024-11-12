@@ -6,7 +6,8 @@ from lxml.etree import Element
 class BaseStructureClass:
     lxml_element: Element
     parent: Element
-    id: int
+    tag: str
+    idx = 0
 
     def __getitem__(self, key):
         return getattr(self, key)
@@ -15,7 +16,7 @@ class BaseStructureClass:
         setattr(self, key, value)
 
     def __str__(self):
-        return f"{self.id}. {self.name}"
+        return f"{self.tag} {self.name}"
 
     def get_child_attr_by_matching_property(
             self,
