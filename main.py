@@ -109,7 +109,7 @@ def _find_lineages_list_for_mapping(m):
         target_col = target_obj.get_child_attr_by_matching_property(
             'name', to=con.tofield, child=target_col_name
         )[0]
-        res.append((source_col.id, target_col.id))
+        res.append((source_col.idx, target_col.idx))
     return res
 
 
