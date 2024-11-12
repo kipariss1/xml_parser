@@ -49,6 +49,7 @@ class InputLineageReaderXML(InputLineageReader):
                         el.id = merge_names.index(el.name) + 1
                     else:
                         el.id = idx + 1
+                # TODO: here
 
     def _read_input(self, target_file_path: Path):
         tree = etree.parse(target_file_path)
