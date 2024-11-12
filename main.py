@@ -55,27 +55,22 @@ def find_databases(input_xml: InputLineageReaderXML):
 
 def _rec_find_informatica_objs(obj: list, json_dict: dict, level: int, col_cnt: int):
     curr_level = InformaticaObjectHierarchy(level).name
-    match curr_level:
-        case 'TRANSFORMFIELD':
-            for el in obj:
-                if el.name in json_dict:
-                    continue
+    for el in obj:
+        if el.name in json_dict:
+            continue
+        match curr_level:
+            case 'TRANSFORMFIELD':
                 el.idx = col_cnt
                 json_dict[el.name] = {'id': col_cnt}
                 col_cnt += 1
-        case 'SESSION':
-            for el in obj:
-                if el.name in json_dict:
-                    continue
+            case 'SESSION':
                 folder = el.parent.parent
                 mappings = folder.get_child_attr_by_matching_property('name', to=el.mappingname, child='MAPPING')
-                _rec_find_informatica_objs(mappings, json_dict[str(el)], level + 1, col_cnt)
-        case _:
-            next_level = InformaticaObjectHierarchy(level + 1).name
-            for el in obj:
-                if el.name in json_dict:
-                    continue
-                _rec_find_informatica_objs(el[next_level + 'S'], json_dict[el.name], level + 1, col_cnt)
+                col_cnt = _rec_find_informatica_objs(mappings, json_dict[el.name], level + 1, col_cnt)
+            case _:
+                next_level = InformaticaObjectHierarchy(level + 1).name
+                col_cnt = _rec_find_informatica_objs(el[next_level + 'S'], json_dict[el.name], level + 1, col_cnt)
+    return col_cnt
 
 
 @save_to_json('outs\\informatica_objs.json')
