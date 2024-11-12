@@ -63,37 +63,43 @@ def _get_souce_and_target_type_for_connection(connection):
     source_name = 'SOURCE' if 'Definition' in connection.frominstancetype else 'TRANSFORMATION'
     source_col_name = 'SOURCEFIELD' if source_name == 'SOURCE' else 'TRANSFORMFIELD'
     target_name = 'TARGET' if 'Definition' in connection.toinstancetype else 'TRANSFORMATION'
-    target_col_name = 'TARGETFIELD' if target_name == 'SOURCE' else 'TRANSFORMFIELD'
+    target_col_name = 'TARGETFIELD' if target_name == 'TARGET' else 'TRANSFORMFIELD'
     return source_name, source_col_name, target_name, target_col_name
 
 
-def _find_lineages_list_for_mapping(mapping):
-    for tr in mapping.TRANSFORMATIONS:
-        tr_connectors = list(filter(
-            lambda con: con.frominstance == tr.name or con.toinstance == tr.name,
-            mapping.CONNECTORS
-        ))
-        for con in tr_connectors:
-            (source_name,
-             source_col_name,
-             target_name,
-             target_col_name) = _get_souce_and_target_type_for_connection(con)
-            source_parent = mapping.parent if source_name == 'SOURCE' else mapping
-            source_obj = source_parent.get_child_attr_by_matching_property('name', to=con.frominstance, child=source_name)[0]
-            source_col = source_obj.get_child_attr_by_matching_property('name', to=con.fromfield, child=source_col_name)[0]
-            target_parent = mapping.parent if target_name == 'TARGET' else mapping
-            target_obj = target_parent.get_child_attr_by_matching_property('name', to=con.toinstance, child=target_name)[0]
-            target_col = target_obj.get_child_attr_by_matching_property('name', to=con.tofield, child=target_col_name)[0]
-            pass
-    return []
+def _find_lineages_list_for_mapping(m):
+    res = []
+    for con in m.CONNECTORS:
+        (source_name,
+         source_col_name,
+         target_name,
+         target_col_name) = _get_souce_and_target_type_for_connection(con)
+        source_parent = con.parent.parent if source_name == 'SOURCE' else m
+        source_obj = source_parent.get_child_attr_by_matching_property(
+            'name', to=con.frominstance, child=source_name
+        )[0]
+        source_col = source_obj.get_child_attr_by_matching_property(
+            'name', to=con.fromfield, child=source_col_name
+        )[0]
+        target_parent = con.parent.parent if target_name == 'TARGET' else m
+        target_obj = target_parent.get_child_attr_by_matching_property(
+            'name', to=con.toinstance, child=target_name
+        )[0]
+        target_col = target_obj.get_child_attr_by_matching_property(
+            'name', to=con.tofield, child=target_col_name
+        )[0]
+        res.append((source_col.id, target_col.id))
+    return res
 
 
 def find_lineages_list(input_xml: InputLineageReaderXML, output_file_dir: str):
-    # TODO: find lineages
+    res = []
     for r in input_xml.root:
         for f in r.FOLDERS:
             for m in f.MAPPINGS:
-                res = _find_lineages_list_for_mapping(m)
+                res = res + _find_lineages_list_for_mapping(m)
+    with open(Path(output_file_dir).resolve(), 'w') as file:
+        json.dump(res, file, indent=4)
 
 
 def find_lineages(path):
