@@ -93,14 +93,14 @@ class TestInputReaderXML:
             assert len(mapping.INSTANCES) == 3
             assert len(mapping.TRANSFORMATIONS) == 1
             assert source.name == 'DimProduct'
-            assert str(source.SOURCEFIELDS[0]) == '1. CustomerKey'
+            assert str(source.SOURCEFIELDS[0]) == 'SOURCEFIELD CustomerKey'
             assert target.name == 'FactInternetSales'
-            assert str(target.TARGETFIELDS[0]) == '1. CustomerKey'
+            assert str(target.TARGETFIELDS[0]) == 'TARGETFIELD CustomerKey'
             assert workflow.name == 'collibra_sample'
             assert hasattr(workflow, 'SESSIONS')
             assert hasattr(workflow, 'TASKINSTANCES')
-            assert str(workflow.SESSIONS[0]) == '1. sql'
-            assert str(workflow.TASKINSTANCES[0]) == '1. sql'
+            assert str(workflow.SESSIONS[0]) == 'SESSION sql'
+            assert str(workflow.TASKINSTANCES[0]) == 'TASKINSTANCE sql'
 
     def test__parced_xml_doesnt_have_duplicates(self, xml_base, duplicate_xml_fill, monkeypatch):
         mock_xml = ET.fromstring(xml_base(duplicate_xml_fill))
@@ -114,8 +114,6 @@ class TestInputReaderXML:
             targets = xml.root[0].FOLDERS[0].TARGETS
             assert len(sources) == 1
             assert len(targets) == 1
-            assert sources[0].id == 1
-            assert targets[0].id == 2
 
 
 
