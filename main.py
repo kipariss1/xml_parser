@@ -19,7 +19,19 @@ def tree():
     return defaultdict(tree)
 
 
-def find_databases(input_xml: InputLineageReaderXML, output_file_dir: str):
+def save_to_json(output_file_dir: str):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            res = func(*args, **kwargs)
+            with open(Path(output_file_dir).resolve(), 'w') as file:
+                json.dump(res, file, indent=4)
+            return res
+        return wrapper
+    return decorator
+
+
+@save_to_json('outs\\dbs.json')
+def find_databases(input_xml: InputLineageReaderXML):
     res = tree()
     folder = input_xml.root[0].FOLDERS[0]
     source_list = folder.SOURCES
@@ -28,18 +40,17 @@ def find_databases(input_xml: InputLineageReaderXML, output_file_dir: str):
     for instance in source_list + target_list:
         attr = 'SOURCEFIELDS' if hasattr(instance, 'SOURCEFIELDS') else 'TARGETFIELDS'
         instance.idx = instance_idx
+        if instance.name in res:
+            continue
+        d_tab = res[instance.name]
         for attr in instance[attr]:
-            pass
+            d_tab[attr.name] = {'id': attr_idx}
+            if attr.name in d_tab:
+                continue
+            attr_idx.idx = attr_idx
             attr_idx += 1
         instance_idx += 1
-        # if hasattr(instance, 'SOURCEFIELDS'):
-        #     d_tab = {col.name: {'id': col.id} for col in instance.SOURCEFIELDS}
-        # elif hasattr(instance, 'TARGETFIELDS'):
-        #     d_tab = {col.name: {'id': col.id} for col in instance.TARGETFIELDS}
-        # if not str(instance) in res.keys():
-        #     res[str(instance)] = d_tab
-    with open(Path(output_file_dir).resolve(), 'w') as file:
-        json.dump(res, file, indent=4)
+    return res
 
 
 def _rec_find_informatica_objs(obj: list, json_dict: dict, level: int):
@@ -59,11 +70,11 @@ def _rec_find_informatica_objs(obj: list, json_dict: dict, level: int):
                 _rec_find_informatica_objs(el[next_level + 'S'], json_dict[str(el)], level + 1)
 
 
-def find_informatica_objs(input_xml: InputLineageReaderXML, output_file_dir: str):
+@save_to_json('outs\\informatica_objs.json')
+def find_informatica_objs(input_xml: InputLineageReaderXML):
     res = tree()
     _rec_find_informatica_objs(input_xml.root, res, 0)
-    with open(Path(output_file_dir).resolve(), 'w') as file:
-        json.dump(res, file, indent=4)
+    return res
 
 
 def _get_souce_and_target_type_for_connection(connection):
@@ -99,22 +110,22 @@ def _find_lineages_list_for_mapping(m):
     return res
 
 
-def find_lineages_list(input_xml: InputLineageReaderXML, output_file_dir: str):
+@save_to_json('outs\\lineages.json')
+def find_lineages_list(input_xml: InputLineageReaderXML):
     res = []
     for r in input_xml.root:
         for f in r.FOLDERS:
             for m in f.MAPPINGS:
                 res = res + _find_lineages_list_for_mapping(m)
-    with open(Path(output_file_dir).resolve(), 'w') as file:
-        json.dump(res, file, indent=4)
+    return res
 
 
 def find_lineages(path):
     xml = Path(path).resolve()
     input_xml = InputLineageReaderXML(xml)
-    find_databases(input_xml, 'outs\\dbs.json')
-    find_informatica_objs(input_xml, 'outs\\informatica_objs.json')
-    find_lineages_list(input_xml, 'outs\\lineages.json')
+    find_databases(input_xml)
+    find_informatica_objs(input_xml)
+    find_lineages_list(input_xml)
 
 
 if __name__ == '__main__':
