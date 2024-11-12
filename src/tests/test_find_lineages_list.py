@@ -4,6 +4,7 @@ from unittest.mock import patch, MagicMock
 from src.InputLineageReaderXML import InputLineageReaderXML
 from main import find_lineages_list, find_databases, find_informatica_objs
 
+
 class TestFindLineages:
 
     @pytest.fixture(autouse=True)
