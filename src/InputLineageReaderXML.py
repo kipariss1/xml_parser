@@ -2,7 +2,6 @@ from pathlib import Path
 from src.interfaces.InputLineageReader import InputLineageReader
 from src.StructureElementsFactory import StructureElementsFactory
 from lxml import etree
-import json
 
 
 class InputLineageReaderXML(InputLineageReader):
