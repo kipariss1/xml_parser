@@ -53,27 +53,35 @@ def find_databases(input_xml: InputLineageReaderXML):
     return res
 
 
-def _rec_find_informatica_objs(obj: list, json_dict: dict, level: int):
+def _rec_find_informatica_objs(obj: list, json_dict: dict, level: int, col_cnt: int):
     curr_level = InformaticaObjectHierarchy(level).name
     match curr_level:
         case 'TRANSFORMFIELD':
             for el in obj:
-                json_dict[el.name] = {'id': el.id}
+                if el.name in json_dict:
+                    continue
+                el.idx = col_cnt
+                json_dict[el.name] = {'id': col_cnt}
+                col_cnt += 1
         case 'SESSION':
             for el in obj:
+                if el.name in json_dict:
+                    continue
                 folder = el.parent.parent
                 mappings = folder.get_child_attr_by_matching_property('name', to=el.mappingname, child='MAPPING')
-                _rec_find_informatica_objs(mappings, json_dict[str(el)], level + 1)
+                _rec_find_informatica_objs(mappings, json_dict[str(el)], level + 1, col_cnt)
         case _:
+            next_level = InformaticaObjectHierarchy(level + 1).name
             for el in obj:
-                next_level = InformaticaObjectHierarchy(level + 1).name
-                _rec_find_informatica_objs(el[next_level + 'S'], json_dict[str(el)], level + 1)
+                if el.name in json_dict:
+                    continue
+                _rec_find_informatica_objs(el[next_level + 'S'], json_dict[el.name], level + 1, col_cnt)
 
 
 @save_to_json('outs\\informatica_objs.json')
 def find_informatica_objs(input_xml: InputLineageReaderXML):
     res = tree()
-    _rec_find_informatica_objs(input_xml.root, res, 0)
+    _rec_find_informatica_objs(input_xml.root, res, 0, 1)
     return res
 
 
