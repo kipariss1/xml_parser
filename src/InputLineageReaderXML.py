@@ -11,6 +11,14 @@ class InputLineageReaderXML(InputLineageReader):
         self.__root = None
         super().__init__(*args, **kwargs)
 
+    @staticmethod
+    def _check_duplicates(ret_list, new_cls):
+        try:
+            if len(list(filter(lambda el: el['name'] == new_cls['name'], ret_list))) == 0:
+                ret_list.append(new_cls)
+        except AttributeError:
+            ret_list.append(new_cls)
+
     def _read_input_file_recursively(self, root, parent):
         ret_list = []
         for i, ch in enumerate(root, start=1):
@@ -25,7 +33,7 @@ class InputLineageReaderXML(InputLineageReader):
                 attributes=attributes,
             )
             new_cls = cls(ch, parent, i)
-            ret_list.append(new_cls)
+            self._check_duplicates(ret_list, new_cls)
             for a in attributes_list:
                 new_cls[a + 'S'] = self._read_input_file_recursively(ch.findall(a), new_cls)
         return ret_list
