@@ -136,3 +136,27 @@ class TestFindDatabases:
                             }
                     }
             }
+
+    def test__session_referencing_wrong_mapping(self, xml_base, session_referencing_wrong_mapping_xml_fill):
+        mock_xml = ET.fromstring(xml_base(session_referencing_wrong_mapping_xml_fill))
+        mock_file = MagicMock()
+        mock_file.is_file.return_value = True
+        mock_root = MagicMock()
+        mock_root.getroot.return_value = mock_xml
+        with patch('src.InputLineageReaderXML.etree.parse', return_value=mock_root):
+            xml = InputLineageReaderXML(mock_file)
+            res = find_informatica_objs(xml)
+            assert res == {
+                'INF_REP_DEV':
+                    {
+                        'CollibraSample':
+                            {
+                                'collibra_sample':
+                                    {
+                                        'oracle': {
+
+                                        }
+                                    }
+                            }
+                    }
+            }
