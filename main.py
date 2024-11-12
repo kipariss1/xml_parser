@@ -23,6 +23,8 @@ def save_to_json(output_file_dir: str):
     def decorator(func):
         def wrapper(*args, **kwargs):
             res = func(*args, **kwargs)
+            if not __name__ == '__main__':
+                return res
             with open(Path(output_file_dir).resolve(), 'w') as file:
                 json.dump(res, file, indent=4)
             return res

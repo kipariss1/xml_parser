@@ -1,4 +1,8 @@
 import pytest
+import xml.etree.ElementTree as ET
+from unittest.mock import patch, MagicMock
+from src.InputLineageReaderXML import InputLineageReaderXML
+from main import find_databases
 
 
 class TestFindDatabases:
@@ -63,7 +67,65 @@ class TestFindDatabases:
         """
 
     @pytest.fixture(autouse=True)
-    def parce_database(self, xml_base, databases_xml_fill):
-        # Get here parced xml object for every test case
-        pass
+    def parced_databases_xml(self, xml_base, databases_xml_fill):
+        mock_xml = ET.fromstring(xml_base(databases_xml_fill))
+        mock_file = MagicMock()
+        mock_file.is_file.return_value = True
+        mock_root = MagicMock()
+        mock_root.getroot.return_value = mock_xml
+        with patch('src.InputLineageReaderXML.etree.parse', return_value=mock_root):
+            xml = InputLineageReaderXML(mock_file)
+            return xml
+
+    def test__check_duplicates(self, parced_databases_xml):
+        sources = parced_databases_xml.root[0].FOLDERS[0].SOURCES
+        targets = parced_databases_xml.root[0].FOLDERS[0].TARGETS
+        assert len(sources) == 2
+        assert len(targets) == 1
+        res = find_databases(parced_databases_xml)
+        assert res == {
+            'DimProduct':
+                {
+                    'ProductKey':
+                        {
+                            'id': 1
+                        },
+                    'SpanishProductName':
+                        {
+                            'id': 2
+                        },
+                    'FrenchProductName':
+                        {
+                            'id': 3
+                        }},
+            'FactInternetSales':
+                {
+                    'ProductKey':
+                        {
+                            'id': 4
+                        },
+                    'OrderDateKey':
+                        {
+                            'id': 5
+                        },
+                    'DueDateKey':
+                        {
+                            'id': 6
+                        },
+                    'ShipDateKey':
+                        {
+                            'id': 7
+                        },
+                    'CustomerKey':
+                        {
+                            'id': 8
+                        },
+                    'PromotionKey':
+                        {
+                            'id': 9
+                        }
+                }
+        }
+
+
 
