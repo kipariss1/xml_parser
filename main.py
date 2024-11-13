@@ -40,6 +40,16 @@ def _import_indexes_from_source_obj(tar, src):
         tf.idx = sfs[0].idx
 
 
+def _check_if_target_should_be_indexed(instance):
+    source_dbs_with_same_name = [e for e in instance.parent.SOURCES if e.name == instance.name]
+    if len(source_dbs_with_same_name):
+        _import_indexes_from_source_obj(
+            instance,
+            source_dbs_with_same_name[0]
+        )
+        return True
+
+
 @save_to_json('outs\\dbs.json')
 def find_databases(input_xml: InputLineageReaderXML):
     res = tree()
@@ -50,9 +60,7 @@ def find_databases(input_xml: InputLineageReaderXML):
     for instance in source_list + target_list:
         d_db = res[instance.dbdname]
         attr = 'SOURCEFIELDS' if hasattr(instance, 'SOURCEFIELDS') else 'TARGETFIELDS'
-        if hasattr(instance, 'TARGETFIELDS') and len([e for e in instance.parent.SOURCES if e.name == instance.name]):
-            _import_indexes_from_source_obj(instance,
-                                            [e for e in instance.parent.SOURCES if e.name == instance.name][0])
+        if hasattr(instance, 'TARGETFIELDS') and _check_if_target_should_be_indexed(instance):
             continue
         if instance.name in d_db:
             continue
