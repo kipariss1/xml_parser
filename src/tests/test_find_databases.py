@@ -84,47 +84,49 @@ class TestFindDatabases:
         assert len(targets) == 1
         res = find_databases(parsed_databases_xml)
         assert res == {
-            'DimProduct':
-                {
-                    'ProductKey':
-                        {
-                            'id': 1
-                        },
-                    'SpanishProductName':
-                        {
-                            'id': 2
-                        },
-                    'FrenchProductName':
-                        {
-                            'id': 3
-                        }},
-            'FactInternetSales':
-                {
-                    'ProductKey':
-                        {
-                            'id': 4
-                        },
-                    'OrderDateKey':
-                        {
-                            'id': 5
-                        },
-                    'DueDateKey':
-                        {
-                            'id': 6
-                        },
-                    'ShipDateKey':
-                        {
-                            'id': 7
-                        },
-                    'CustomerKey':
-                        {
-                            'id': 8
-                        },
-                    'PromotionKey':
-                        {
-                            'id': 9
-                        }
-                }
+            'Raw': {
+                'DimProduct':
+                    {
+                        'ProductKey':
+                            {
+                                'id': 1
+                            },
+                        'SpanishProductName':
+                            {
+                                'id': 2
+                            },
+                        'FrenchProductName':
+                            {
+                                'id': 3
+                            }},
+                'FactInternetSales':
+                    {
+                        'ProductKey':
+                            {
+                                'id': 4
+                            },
+                        'OrderDateKey':
+                            {
+                                'id': 5
+                            },
+                        'DueDateKey':
+                            {
+                                'id': 6
+                            },
+                        'ShipDateKey':
+                            {
+                                'id': 7
+                            },
+                        'CustomerKey':
+                            {
+                                'id': 8
+                            },
+                        'PromotionKey':
+                            {
+                                'id': 9
+                            }
+                    }
+            }
         }
 
 
