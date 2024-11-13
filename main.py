@@ -32,7 +32,7 @@ def save_to_json(output_file_dir: str):
     return decorator
 
 
-def _inport_indexes_from_source_obj(tar, src):
+def _import_indexes_from_source_obj(tar, src):
     for tf in tar.TARGETFIELDS:
         sfs = src.get_child_attr_by_matching_property('name', to=tf.name, child='SOURCEFIELD')
         if len(sfs) == 0:
@@ -50,9 +50,11 @@ def find_databases(input_xml: InputLineageReaderXML):
     for instance in source_list + target_list:
         d_db = res[instance.dbdname]
         attr = 'SOURCEFIELDS' if hasattr(instance, 'SOURCEFIELDS') else 'TARGETFIELDS'
+        if hasattr(instance, 'TARGETFIELDS') and len([e for e in instance.parent.SOURCES if e.name == instance.name]):
+            _import_indexes_from_source_obj(instance,
+                                            [e for e in instance.parent.SOURCES if e.name == instance.name][0])
+            continue
         if instance.name in d_db:
-            if hasattr(instance, 'TARGETFIELDS'):
-                _inport_indexes_from_source_obj(instance, [e for e in instance.parent.SOURCES if e.name == instance.name][0])
             continue
         instance.idx = instance_idx
         d_tab = d_db[instance.name]
